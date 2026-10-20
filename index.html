@@ -43,7 +43,7 @@
   input{font-family:inherit}
   .app{max-width:1100px;margin:0 auto;padding-bottom:40px}
 
-  /* TOPBAR — floating glass pill */
+  /* TOPBAR */
   .topbar{
     display:flex;align-items:center;justify-content:space-between;
     padding:12px 18px;margin:14px 16px 0;border-radius:22px;
@@ -79,7 +79,7 @@
   .btn-icon:active{transform:translateY(0);background:rgba(255,255,255,0.9)}
   .btn-icon svg{width:15px;height:15px}
 
-  /* NAV — segmented glass */
+  /* NAV */
   .nav{
     display:flex;gap:4px;padding:6px;margin:10px 16px 0;
     background:rgba(255,255,255,0.5);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
@@ -106,9 +106,8 @@
   }
   .card-lg{padding:24px;border-radius:var(--radius-lg)}
   .section-title{font-size:18px;font-weight:800;color:var(--slate-900);letter-spacing:-0.02em;margin-bottom:4px}
-  .section-sub{font-size:13px;color:var(--slate-500);margin-bottom:20px}
 
-  /* HERO — liquid animated gradient */
+  /* HERO */
   .hero{
     background:linear-gradient(135deg,#10b981,#059669,#0d9488,#059669,#10b981);
     background-size:300% 300%;animation:liquid 10s ease infinite;
@@ -199,7 +198,7 @@
   .recipe-macros strong{color:var(--slate-800);font-weight:800}
   .recipe-portion{font-size:11.5px;color:var(--slate-400);line-height:1.5}
 
-  /* MODAL — heavy frosted backdrop */
+  /* MODAL */
   .modal-backdrop{
     position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;
     padding:16px;background:rgba(20,25,45,0.35);
@@ -242,6 +241,8 @@
   }
   .macro-val{font-size:16px;font-weight:800;color:var(--slate-900);letter-spacing:-0.02em}
   .macro-lbl{font-size:10px;color:var(--slate-500);font-weight:700;text-transform:uppercase;margin-top:2px}
+  
+  /* INGREDIENTS & STEPS */
   .ingredient-list{display:flex;flex-direction:column;gap:6px}
   .ingredient-item{
     display:flex;justify-content:space-between;padding:10px 12px;
@@ -249,8 +250,16 @@
     border:1px solid rgba(255,255,255,0.6);
   }
   .ingredient-item strong{color:var(--slate-800);font-weight:700}
-  .ingredient-item span{color:var(--slate-500);font-weight:500}
-  .steps-text{font-size:13px;color:var(--slate-600);line-height:1.75}
+  .ingredient-item span{color:var(--slate-500);font-weight:500;text-align:right}
+  
+  .steps-list{display:flex;flex-direction:column;gap:12px}
+  .step-item{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,0.4);padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.6)}
+  .step-num{
+    width:24px;height:24px;border-radius:50%;background:linear-gradient(180deg,#10b981,#059669);color:#fff;
+    display:grid;place-items:center;font-size:12px;font-weight:800;flex-shrink:0;margin-top:2px;
+    box-shadow:0 2px 6px rgba(16,185,129,0.3);
+  }
+  .step-text{font-size:13px;color:var(--slate-700);line-height:1.6;font-weight:500}
 
   .day-grid{display:flex;flex-direction:column;gap:10px}
   .day-card{
@@ -416,7 +425,7 @@
   .week-actions{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
   .link-btn{background:none;padding:0;color:var(--em-700);font-size:12px;font-weight:800;text-decoration:underline;cursor:pointer}
 
-  /* FOOTER — liquid glass */
+  /* FOOTER */
   .footer{
     margin:20px 16px 0;padding:16px 20px;text-align:center;
     background:var(--glass-bg);
@@ -447,7 +456,6 @@
   <header class="topbar">
     <div class="brand">
       <div class="brand-icon">
-        <!-- LOGO BARU: CHEF HAT (DAPUR) -->
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z"/>
           <path d="M6 17h12"/>
@@ -481,46 +489,167 @@
 <div class="toast" id="toast"></div>
 
 <script>
-/* ============ DATA 150 RESEP ============ */
+/* ============ DATA 150 RESEP (UPGRADED BAHAN & CARA) ============ */
 const MAINS=[
- {nama:"Ayam Bakar Kecap",kategori:"Ayam",kalori:230,protein:32,bahanUtama:{nama:"Dada ayam fillet",qty:"100 gr",kat:"Protein"},bumbu:[{nama:"Kecap manis",qty:"2 sdm"},{nama:"Bawang putih",qty:"1 siung"},{nama:"Ketumbar bubuk",qty:"1/2 sdt"}],cara:"Marinasi ayam dengan kecap, bawang putih, dan ketumbar 15 menit. Bakar di teflon anti lengket 8-10 menit, balik sekali."},
- {nama:"Ayam Panggang Rosemary",kategori:"Ayam",kalori:220,protein:31,bahanUtama:{nama:"Dada ayam fillet",qty:"100 gr",kat:"Protein"},bumbu:[{nama:"Rosemary kering",qty:"1/2 sdt"},{nama:"Bawang putih cincang",qty:"1 siung"},{nama:"Minyak zaitun",qty:"1 sdt"}],cara:"Lumuri ayam dengan bumbu. Panggang di oven 180°C 15 menit atau di teflon tertutup."},
- {nama:"Ayam Suwir Pedas",kategori:"Ayam",kalori:240,protein:30,bahanUtama:{nama:"Dada ayam fillet",qty:"100 gr",kat:"Protein"},bumbu:[{nama:"Cabai merah",qty:"3 buah"},{nama:"Bawang merah",qty:"2 siung"},{nama:"Serai",qty:"1 batang"}],cara:"Rebus ayam, suwir. Tumis bumbu halus hingga harum, masukkan ayam suwir, aduk rata 5 menit."},
- {nama:"Ayam Kukus Jahe",kategori:"Ayam",kalori:220,protein:32,bahanUtama:{nama:"Dada ayam fillet",qty:"100 gr",kat:"Protein"},bumbu:[{nama:"Jahe",qty:"1 ruas"},{nama:"Bawang putih",qty:"2 siung"},{nama:"Kecap asin",qty:"1 sdt"}],cara:"Kukus ayam bersama irisan jahe dan bawang putih 20 menit hingga matang."},
- {nama:"Ayam Teriyaki",kategori:"Ayam",kalori:235,protein:31,bahanUtama:{nama:"Dada ayam fillet",qty:"100 gr",kat:"Protein"},bumbu:[{nama:"Saus teriyaki",qty:"1,5 sdm"},{nama:"Bawang bombay",qty:"1/4 buah"},{nama:"Jahe parut",qty:"1/2 sdt"}],cara:"Tumis bawang bombay, masukkan ayam, tuang saus teriyaki, masak hingga meresap 8 menit."},
- {nama:"Dada Ayam Sambal Matah",kategori:"Ayam",kalori:230,protein:31,bahanUtama:{nama:"Dada ayam fillet",qty:"100 gr",kat:"Protein"},bumbu:[{nama:"Cabai rawit",qty:"5 buah"},{nama:"Bawang merah",qty:"2 siung"},{nama:"Serai",qty:"1 batang"},{nama:"Jeruk limau",qty:"1/2 buah"}],cara:"Panggang ayam, iris tipis. Siram dengan sambal matah (irisan cabai, bawang merah, serai, jeruk limau)."},
- {nama:"Ikan Kembung Bakar",kategori:"Ikan",kalori:220,protein:26,bahanUtama:{nama:"Ikan kembung",qty:"1 ekor",kat:"Protein"},bumbu:[{nama:"Jeruk nipis",qty:"1/2 buah"},{nama:"Bawang merah",qty:"2 siung"},{nama:"Kecap manis",qty:"1 sdm"}],cara:"Lumuri ikan dengan jeruk nipis, olesi bumbu. Bakar di teflon 6-8 menit tiap sisi."},
- {nama:"Ikan Salmon Panggang",kategori:"Ikan",kalori:250,protein:28,bahanUtama:{nama:"Ikan salmon fillet",qty:"100 gr",kat:"Protein"},bumbu:[{nama:"Minyak zaitun",qty:"1 sdt"},{nama:"Lemon",qty:"1/2 buah"},{nama:"Lada hitam",qty:"1/4 sdt"}],cara:"Lumuri salmon dengan bumbu, panggang 4 menit tiap sisi. Sajikan dengan perasan lemon."},
- {nama:"Ikan Dori Crispy Oat",kategori:"Ikan",kalori:240,protein:25,bahanUtama:{nama:"Ikan dori fillet",qty:"100 gr",kat:"Protein"},bumbu:[{nama:"Oatmeal halus",qty:"3 sdm"},{nama:"Lada hitam",qty:"1/4 sdt"},{nama:"Bawang putih bubuk",qty:"1/2 sdt"}],cara:"Lumuri dori dengan bumbu, balur oatmeal. Panggang di oven 200°C 15 menit."},
- {nama:"Ikan Tuna Suwir",kategori:"Ikan",kalori:230,protein:28,bahanUtama:{nama:"Ikan tuna",qty:"100 gr",kat:"Protein"},bumbu:[{nama:"Bawang merah",qty:"2 siung"},{nama:"Cabai rawit",qty:"3 buah"},{nama:"Kemangi",qty:"1 ikat kecil"}],cara:"Kukus tuna, suwir. Tumis bumbu, masukkan tuna suwir, aduk rata 3 menit."},
- {nama:"Ikan Nila Goreng Kunyit",kategori:"Ikan",kalori:235,protein:26,bahanUtama:{nama:"Ikan nila",qty:"1 ekor sedang",kat:"Protein"},bumbu:[{nama:"Kunyit bubuk",qty:"1/2 sdt"},{nama:"Bawang putih",qty:"2 siung"},{nama:"Garam",qty:"1/4 sdt"}],cara:"Lumuri ikan dengan bumbu halus. Pan-fry dengan sedikit minyak hingga kering."},
- {nama:"Udang Tumis Bawang",kategori:"Seafood",kalori:225,protein:24,bahanUtama:{nama:"Udang kupas",qty:"100 gr",kat:"Protein"},bumbu:[{nama:"Bawang putih",qty:"2 siung"},{nama:"Bawang bombay",qty:"1/4 buah"},{nama:"Saus tiram",qty:"1 sdt"}],cara:"Tumis bawang hingga harum, masukkan udang, bumbui, masak 3-4 menit hingga udang berubah warna."},
- {nama:"Cumi Saus Padang",kategori:"Seafood",kalori:240,protein:23,bahanUtama:{nama:"Cumi segar",qty:"100 gr",kat:"Protein"},bumbu:[{nama:"Cabai merah",qty:"3 buah"},{nama:"Bawang merah",qty:"2 siung"},{nama:"Saus tomat",qty:"1 sdm"}],cara:"Tumis bumbu halus, masukkan cumi, masak sebentar agar tidak alot."},
- {nama:"Udang Bakar Madu",kategori:"Seafood",kalori:230,protein:24,bahanUtama:{nama:"Udang kupas",qty:"100 gr",kat:"Protein"},bumbu:[{nama:"Madu",qty:"1 sdt"},{nama:"Kecap manis",qty:"1 sdm"},{nama:"Bawang putih",qty:"1 siung"}],cara:"Marinasi udang dengan madu & kecap. Bakar di teflon 3 menit tiap sisi."},
- {nama:"Cumi Goreng Tepung Oat",kategori:"Seafood",kalori:245,protein:23,bahanUtama:{nama:"Cumi segar",qty:"100 gr",kat:"Protein"},bumbu:[{nama:"Oatmeal halus",qty:"3 sdm"},{nama:"Lada hitam",qty:"1/4 sdt"},{nama:"Bawang putih bubuk",qty:"1/2 sdt"}],cara:"Balur cumi dengan oatmeal berbumbu. Panggang di oven 200°C 12 menit."},
- {nama:"Telur Balado",kategori:"Telur",kalori:225,protein:14,bahanUtama:{nama:"Telur ayam",qty:"2 butir",kat:"Protein"},bumbu:[{nama:"Cabai merah",qty:"4 buah"},{nama:"Bawang merah",qty:"2 siung"},{nama:"Tomat",qty:"1/2 buah"}],cara:"Rebus telur, goreng sebentar. Tumis bumbu balado, masukkan telur, aduk rata."},
- {nama:"Telur Dadar Sayur",kategori:"Telur",kalori:230,protein:15,bahanUtama:{nama:"Telur ayam",qty:"2 butir",kat:"Protein"},bumbu:[{nama:"Wortel parut",qty:"2 sdm"},{nama:"Daun bawang",qty:"1 batang"},{nama:"Lada",qty:"1/4 sdt"}],cara:"Kocok telur dengan sayuran, dadar di teflon anti lengket dengan sedikit minyak."},
- {nama:"Telur Rebus Sambal",kategori:"Telur",kalori:220,protein:14,bahanUtama:{nama:"Telur ayam",qty:"2 butir",kat:"Protein"},bumbu:[{nama:"Cabai rawit",qty:"5 buah"},{nama:"Bawang putih",qty:"1 siung"},{nama:"Jeruk limau",qty:"1/2 buah"}],cara:"Rebus telur 8 menit. Ulek sambal, siram di atas telur."},
- {nama:"Telur Orak-Arik",kategori:"Telur",kalori:220,protein:15,bahanUtama:{nama:"Telur ayam",qty:"2 butir",kat:"Protein"},bumbu:[{nama:"Bawang bombay",qty:"1/4 buah"},{nama:"Tomat",qty:"1/2 buah"},{nama:"Lada",qty:"1/4 sdt"}],cara:"Tumis bawang bombay & tomat, masukkan telur, orak-arik hingga matang."},
- {nama:"Tahu Bacem",kategori:"Tahu Tempe",kalori:220,protein:16,bahanUtama:{nama:"Tahu",qty:"3 potong",kat:"Protein"},bumbu:[{nama:"Kecap manis",qty:"2 sdm"},{nama:"Bawang merah",qty:"2 siung"},{nama:"Ketumbar",qty:"1/2 sdt"}],cara:"Ungkep tahu dengan bumbu dan sedikit air hingga meresap. Panggang sebentar di teflon."},
- {nama:"Tahu Kecap",kategori:"Tahu Tempe",kalori:225,protein:16,bahanUtama:{nama:"Tahu",qty:"3 potong",kat:"Protein"},bumbu:[{nama:"Kecap manis",qty:"2 sdm"},{nama:"Bawang putih",qty:"2 siung"},{nama:"Cabai merah",qty:"2 buah"}],cara:"Tumis bumbu, masukkan tahu, tuang kecap dan sedikit air, masak hingga meresap."},
- {nama:"Tempe Orek",kategori:"Tahu Tempe",kalori:230,protein:17,bahanUtama:{nama:"Tempe",qty:"100 gr",kat:"Protein"},bumbu:[{nama:"Kecap manis",qty:"2 sdm"},{nama:"Bawang merah",qty:"2 siung"},{nama:"Cabai merah",qty:"2 buah"}],cara:"Potong tempe kecil-kecil, tumis dengan bumbu iris dan kecap hingga kering."},
- {nama:"Tempe Mendoan Sehat",kategori:"Tahu Tempe",kalori:235,protein:16,bahanUtama:{nama:"Tempe",qty:"100 gr",kat:"Protein"},bumbu:[{nama:"Tepung oat",qty:"2 sdm"},{nama:"Bawang putih",qty:"1 siung"},{nama:"Ketumbar",qty:"1/2 sdt"}],cara:"Celup tempe ke adonan tepung oat berbumbu, panggang di teflon hingga keemasan."},
- {nama:"Tahu-Tempe Bacem",kategori:"Tahu Tempe",kalori:225,protein:17,bahanUtama:{nama:"Tahu & tempe",qty:"2 potong + 50 gr",kat:"Protein"},bumbu:[{nama:"Kecap manis",qty:"2 sdm"},{nama:"Bawang merah",qty:"3 siung"},{nama:"Lengkuas",qty:"1 ruas"}],cara:"Ungkep tahu dan tempe dengan bumbu hingga air menyusut. Panggang sebentar."},
- {nama:"Daging Sapi Lada Hitam",kategori:"Daging",kalori:245,protein:26,bahanUtama:{nama:"Daging sapi",qty:"80 gr",kat:"Protein"},bumbu:[{nama:"Saus lada hitam",qty:"1,5 sdm"},{nama:"Bawang bombay",qty:"1/4 buah"},{nama:"Paprika",qty:"1/4 buah"}],cara:"Tumis bawang bombay, masukkan daging, tuang saus lada hitam, masak hingga matang."},
- {nama:"Daging Sapi Semur",kategori:"Daging",kalori:250,protein:27,bahanUtama:{nama:"Daging sapi",qty:"80 gr",kat:"Protein"},bumbu:[{nama:"Kecap manis",qty:"2 sdm"},{nama:"Bawang merah",qty:"2 siung"},{nama:"Pala bubuk",qty:"1/4 sdt"}],cara:"Rebus daging hingga empuk. Tumis bumbu, masukkan daging dan kecap, masak hingga meresap."},
- {nama:"Daging Sapi Teriyaki",kategori:"Daging",kalori:240,protein:26,bahanUtama:{nama:"Daging sapi",qty:"80 gr",kat:"Protein"},bumbu:[{nama:"Saus teriyaki",qty:"1,5 sdm"},{nama:"Bawang bombay",qty:"1/4 buah"},{nama:"Jahe",qty:"1/2 sdt"}],cara:"Tumis bawang bombay & jahe, masukkan daging, tuang saus teriyaki, masak hingga meresap."},
- {nama:"Daging Cincang Saus Tiram",kategori:"Daging",kalori:235,protein:25,bahanUtama:{nama:"Daging sapi cincang",qty:"80 gr",kat:"Protein"},bumbu:[{nama:"Saus tiram",qty:"1 sdm"},{nama:"Bawang putih",qty:"2 siung"},{nama:"Daun bawang",qty:"1 batang"}],cara:"Tumis bawang putih, masukkan daging cincang, bumbui saus tiram, masak hingga matang."},
- {nama:"Ayam Cincang Bumbu Bali",kategori:"Daging",kalori:245,protein:28,bahanUtama:{nama:"Ayam cincang",qty:"100 gr",kat:"Protein"},bumbu:[{nama:"Cabai merah",qty:"4 buah"},{nama:"Bawang merah",qty:"3 siung"},{nama:"Terasi",qty:"1/4 sdt"}],cara:"Tumis bumbu halus, masukkan ayam cincang, masak hingga matang dan bumbu meresap."},
- {nama:"Daging Sapi Rendang Sehat",kategori:"Daging",kalori:250,protein:27,bahanUtama:{nama:"Daging sapi",qty:"80 gr",kat:"Protein"},bumbu:[{nama:"Bumbu rendang instan",qty:"1 sdm"},{nama:"Santan cair",qty:"50 ml"},{nama:"Serai",qty:"1 batang"}],cara:"Masak daging dengan bumbu rendang dan santan cair hingga kuah menyusut dan bumbu meresap."}
+ {nama:"Ayam Bakar Kecap",kategori:"Ayam",kalori:230,protein:32,
+  bahanUtama:{nama:"Dada ayam fillet",qty:"150 gram",kat:"Protein"},
+  bumbu:[{nama:"Kecap manis",qty:"2 sdm (30 ml)"},{nama:"Bawang putih",qty:"1 siung (5 gram)"},{nama:"Ketumbar bubuk",qty:"1/2 sdt (2 gram)"},{nama:"Minyak zaitun",qty:"1 sdt (5 ml)"}],
+  cara:["Haluskan bawang putih dan ketumbar, campurkan dengan kecap manis dan minyak zaitun.","Lumuri dada ayam dengan campuran bumbu, diamkan (marinasi) selama 15 menit agar meresap.","Panaskan teflon anti lengket, bakar ayam selama 8-10 menit. Balik sekali agar matang merata.","Angkat, potong sesuai selera, dan sajikan."]},
+
+ {nama:"Ayam Panggang Rosemary",kategori:"Ayam",kalori:220,protein:31,
+  bahanUtama:{nama:"Dada ayam fillet",qty:"150 gram",kat:"Protein"},
+  bumbu:[{nama:"Rosemary kering",qty:"1/2 sdt (1 gram)"},{nama:"Bawang putih cincang",qty:"1 siung (5 gram)"},{nama:"Minyak zaitun",qty:"1 sdt (5 ml)"},{nama:"Garam & Lada",qty:"1/4 sdt (1 gram)"}],
+  cara:["Campur bawang putih, rosemary, garam, lada, dan minyak zaitun.","Lumuri ayam secara merata dengan campuran bumbu tersebut.","Jika menggunakan oven: Panggang pada suhu 180°C selama 15 menit. Jika menggunakan teflon: Tutup teflon dan masak dengan api kecil selama 10-12 menit.","Pastikan ayam matang sempurna, angkat dan sajikan."]},
+
+ {nama:"Ayam Suwir Pedas",kategori:"Ayam",kalori:240,protein:30,
+  bahanUtama:{nama:"Dada ayam fillet",qty:"150 gram",kat:"Protein"},
+  bumbu:[{nama:"Cabai merah",qty:"3 buah (30 gram)"},{nama:"Bawang merah",qty:"2 siung (10 gram)"},{nama:"Serai",qty:"1 batang (10 gram)"},{nama:"Minyak zaitun",qty:"1 sdt (5 ml)"}],
+  cara:["Rebus dada ayam dalam air mendidih selama 15 menit hingga matang. Angkat dan suwir-suwir.","Haluskan cabai merah dan bawang merah. Geprek serai.","Panaskan minyak zaitun, tumis bumbu halus dan serai hingga harum (sekitar 3 menit).","Masukkan ayam suwir, aduk rata dan masak selama 5 menit agar bumbu meresap."]},
+
+ {nama:"Ayam Kukus Jahe",kategori:"Ayam",kalori:220,protein:32,
+  bahanUtama:{nama:"Dada ayam fillet",qty:"150 gram",kat:"Protein"},
+  bumbu:[{nama:"Jahe",qty:"1 ruas (10 gram)"},{nama:"Bawang putih",qty:"2 siung (10 gram)"},{nama:"Kecap asin",qty:"1 sdt (5 ml)"}],
+  cara:["Iris tipis jahe dan bawang putih.","Letakkan ayam di wadah tahan panas, taburi irisan jahe dan bawang putih di atasnya.","Kukus dalam kukusan yang sudah dipanaskan selama 20 menit hingga ayam matang dan empuk.","Angkat dan sirami dengan kecap asin sebelum disajikan."]},
+
+ {nama:"Ayam Teriyaki",kategori:"Ayam",kalori:235,protein:31,
+  bahanUtama:{nama:"Dada ayam fillet",qty:"150 gram",kat:"Protein"},
+  bumbu:[{nama:"Saus teriyaki",qty:"1,5 sdm (25 ml)"},{nama:"Bawang bombay",qty:"1/4 buah (25 gram)"},{nama:"Jahe parut",qty:"1/2 sdt (2 gram)"},{nama:"Minyak zaitun",qty:"1 sdt (5 ml)"}],
+  cara:["Potong dadu dada ayam, iris tipis bawang bombay.","Panaskan minyak zaitun, tumis bawang bombay dan jahe hingga wangi.","Masukkan ayam, masak hingga berubah warna (sekitar 4 menit).","Tuang saus teriyaki, aduk rata, masak hingga saus meresap dan ayam matang (sekitar 4 menit)."]},
+
+ {nama:"Dada Ayam Sambal Matah",kategori:"Ayam",kalori:230,protein:31,
+  bahanUtama:{nama:"Dada ayam fillet",qty:"150 gram",kat:"Protein"},
+  bumbu:[{nama:"Cabai rawit",qty:"5 buah (15 gram)"},{nama:"Bawang merah",qty:"2 siung (10 gram)"},{nama:"Serai",qty:"1 batang (10 gram)"},{nama:"Jeruk limau",qty:"1/2 buah (10 ml)"},{nama:"Minyak kelapa",qty:"1 sdt (5 ml)"}],
+  cara:["Panggang ayam di teflon hingga matang, lalu iris tipis.","Iris halus cabai rawit, bawang merah, dan bagian putih serai.","Campur irisan tersebut dalam mangkuk, beri perasan jeruk limau dan minyak kelapa yang sudah dipanaskan.","Siram sambal matah di atas irisan ayam, aduk sebentar dan sajikan."]},
+
+ {nama:"Ikan Kembung Bakar",kategori:"Ikan",kalori:220,protein:26,
+  bahanUtama:{nama:"Ikan kembung",qty:"1 ekor (150 gram)",kat:"Protein"},
+  bumbu:[{nama:"Jeruk nipis",qty:"1/2 buah (10 ml)"},{nama:"Bawang merah",qty:"2 siung (10 gram)"},{nama:"Kecap manis",qty:"1 sdm (15 ml)"},{nama:"Minyak zaitun",qty:"1 sdt (5 ml)"}],
+  cara:["Lumuri ikan dengan perasan jeruk nipis untuk menghilangkan amis, diamkan 5 menit.","Haluskan bawang merah, campur dengan kecap manis dan minyak zaitun.","Olesi ikan dengan campuran bumbu.","Bakar di teflon anti lengket selama 6-8 menit tiap sisi hingga matang."]},
+
+ {nama:"Ikan Salmon Panggang",kategori:"Ikan",kalori:250,protein:28,
+  bahanUtama:{nama:"Ikan salmon fillet",qty:"150 gram",kat:"Protein"},
+  bumbu:[{nama:"Minyak zaitun",qty:"1 sdt (5 ml)"},{nama:"Lemon",qty:"1/2 buah (20 ml)"},{nama:"Lada hitam",qty:"1/4 sdt (1 gram)"},{nama:"Garam",qty:"1/4 sdt (1 gram)"}],
+  cara:["Lumuri salmon dengan minyak zaitun, garam, dan lada hitam secara merata.","Panaskan teflon anti lengket, panggang salmon dengan sisi kulit di bawah terlebih dahulu.","Masak selama 4 menit tiap sisi tergantung ketebalan.","Angkat dan sajikan dengan perasan lemon segar."]},
+
+ {nama:"Ikan Dori Crispy Oat",kategori:"Ikan",kalori:240,protein:25,
+  bahanUtama:{nama:"Ikan dori fillet",qty:"150 gram",kat:"Protein"},
+  bumbu:[{nama:"Oatmeal halus",qty:"3 sdm (30 gram)"},{nama:"Lada hitam",qty:"1/4 sdt (1 gram)"},{nama:"Bawang putih bubuk",qty:"1/2 sdt (2 gram)"},{nama:"Garam",qty:"1/4 sdt (1 gram)"}],
+  cara:["Campur oatmeal halus, lada hitam, bawang putih bubuk, dan garam dalam wadah.","Lumuri fillet dori dengan sedikit air, lalu balurkan ke dalam campuran oatmeal hingga tertutup rata.","Letakkan di loyang yang dialasi kertas roti.","Panggang di oven pada suhu 200°C selama 15 menit atau hingga kecoklatan."]},
+
+ {nama:"Ikan Tuna Suwir",kategori:"Ikan",kalori:230,protein:28,
+  bahanUtama:{nama:"Ikan tuna",qty:"150 gram",kat:"Protein"},
+  bumbu:[{nama:"Bawang merah",qty:"2 siung (10 gram)"},{nama:"Cabai rawit",qty:"3 buah (10 gram)"},{nama:"Kemangi",qty:"1 ikat kecil (5 gram)"},{nama:"Minyak zaitun",qty:"1 sdt (5 ml)"}],
+  cara:["Kukus ikan tuna selama 15 menit hingga matang, lalu suwir-suwir.","Iris bawang merah dan cabai rawit.","Panaskan minyak zaitun, tumis irisan bawang dan cabai hingga harum.","Masukkan tuna suwir dan daun kemangi, aduk rata dan masak selama 3 menit."]},
+
+ {nama:"Ikan Nila Goreng Kunyit",kategori:"Ikan",kalori:235,protein:26,
+  bahanUtama:{nama:"Ikan nila",qty:"1 ekor sedang (150 gram)",kat:"Protein"},
+  bumbu:[{nama:"Kunyit bubuk",qty:"1/2 sdt (2 gram)"},{nama:"Bawang putih",qty:"2 siung (10 gram)"},{nama:"Garam",qty:"1/4 sdt (1 gram)"},{nama:"Minyak zaitun",qty:"1 sdt (5 ml)"}],
+  cara:["Haluskan bawang putih, kunyit bubuk, dan garam.","Lumuri ikan nila dengan bumbu halus secara merata, diamkan 10 menit.","Panaskan minyak zaitun di teflon anti lengket.","Goreng ikan (pan-fry) hingga kering dan matang kecoklatan di kedua sisi."]},
+
+ {nama:"Udang Tumis Bawang",kategori:"Seafood",kalori:225,protein:24,
+  bahanUtama:{nama:"Udang kupas",qty:"150 gram",kat:"Protein"},
+  bumbu:[{nama:"Bawang putih",qty:"2 siung (10 gram)"},{nama:"Bawang bombay",qty:"1/4 buah (25 gram)"},{nama:"Saus tiram",qty:"1 sdt (5 ml)"},{nama:"Minyak zaitun",qty:"1 sdt (5 ml)"}],
+  cara:["Cincang bawang putih, iris bawang bombay.","Panaskan minyak zaitun, tumis bawang hingga harum dan layu.","Masukkan udang, masak hingga berubah warna menjadi kemerahan (sekitar 3 menit).","Tambahkan saus tiram, aduk rata, masak sebentar lalu angkat."]},
+
+ {nama:"Cumi Saus Padang",kategori:"Seafood",kalori:240,protein:23,
+  bahanUtama:{nama:"Cumi segar",qty:"150 gram",kat:"Protein"},
+  bumbu:[{nama:"Cabai merah",qty:"3 buah (30 gram)"},{nama:"Bawang merah",qty:"2 siung (10 gram)"},{nama:"Saus tomat",qty:"1 sdm (15 ml)"},{nama:"Minyak zaitun",qty:"1 sdt (5 ml)"}],
+  cara:["Bersihkan cumi, potong bentuk cincin.","Haluskan cabai merah dan bawang merah.","Tumis bumbu halus dengan minyak zaitun hingga harum. Tambahkan saus tomat.","Masukkan cumi, masak dengan api besar sebentar saja (2-3 menit) agar tidak alot. Angkat."]},
+
+ {nama:"Udang Bakar Madu",kategori:"Seafood",kalori:230,protein:24,
+  bahanUtama:{nama:"Udang kupas",qty:"150 gram",kat:"Protein"},
+  bumbu:[{nama:"Madu",qty:"1 sdt (7 gram)"},{nama:"Kecap manis",qty:"1 sdm (15 ml)"},{nama:"Bawang putih",qty:"1 siung (5 gram)"}],
+  cara:["Haluskan bawang putih, campur dengan madu dan kecap manis.","Marinasi udang dengan campuran bumbu selama 10 menit.","Tusuk udang atau letakkan di teflon anti lengket.","Bakar/panggang udang selama 3 menit tiap sisi hingga matang dan bumbu karamelisasi."]},
+
+ {nama:"Cumi Goreng Tepung Oat",kategori:"Seafood",kalori:245,protein:23,
+  bahanUtama:{nama:"Cumi segar",qty:"150 gram",kat:"Protein"},
+  bumbu:[{nama:"Oatmeal halus",qty:"3 sdm (30 gram)"},{nama:"Lada hitam",qty:"1/4 sdt (1 gram)"},{nama:"Bawang putih bubuk",qty:"1/2 sdt (2 gram)"},{nama:"Garam",qty:"1/4 sdt (1 gram)"}],
+  cara:["Campur oatmeal halus dengan lada hitam, bawang putih bubuk, dan garam.","Potong cumi bentuk cincin, balurkan ke dalam campuran oatmeal hingga tertutup rata.","Letakkan di loyang yang dialasi kertas roti.","Panggang di oven pada suhu 200°C selama 12 menit hingga renyah."]},
+
+ {nama:"Telur Balado",kategori:"Telur",kalori:225,protein:14,
+  bahanUtama:{nama:"Telur ayam",qty:"2 butir (100 gram)",kat:"Protein"},
+  bumbu:[{nama:"Cabai merah",qty:"4 buah (40 gram)"},{nama:"Bawang merah",qty:"2 siung (10 gram)"},{nama:"Tomat",qty:"1/2 buah (30 gram)"},{nama:"Minyak zaitun",qty:"1 sdt (5 ml)"}],
+  cara:["Rebus telur selama 10 menit, kupas, lalu goreng sebentar dengan sedikit minyak (opsional).","Haluskan cabai merah, bawang merah, dan tomat.","Tumis bumbu halus hingga harum dan minyaknya keluar.","Masukkan telur, aduk rata dengan bumbu, masak sebentar lalu angkat."]},
+
+ {nama:"Telur Dadar Sayur",kategori:"Telur",kalori:230,protein:15,
+  bahanUtama:{nama:"Telur ayam",qty:"2 butir (100 gram)",kat:"Protein"},
+  bumbu:[{nama:"Wortel parut",qty:"2 sdm (20 gram)"},{nama:"Daun bawang iris",qty:"1 batang (10 gram)"},{nama:"Lada",qty:"1/4 sdt (1 gram)"},{nama:"Minyak zaitun",qty:"1 sdt (5 ml)"}],
+  cara:["Kocok lepas telur, campurkan dengan wortel parut, irisan daun bawang, dan lada.","Panaskan minyak zaitun di teflon anti lengket.","Tuang campuran telur, masak dengan api kecil hingga bagian bawah kecoklatan.","Balik dadar dan masak hingga matang sempurna."]},
+
+ {nama:"Telur Rebus Sambal",kategori:"Telur",kalori:220,protein:14,
+  bahanUtama:{nama:"Telur ayam",qty:"2 butir (100 gram)",kat:"Protein"},
+  bumbu:[{nama:"Cabai rawit",qty:"5 buah (15 gram)"},{nama:"Bawang putih",qty:"1 siung (5 gram)"},{nama:"Jeruk limau",qty:"1/2 buah (10 ml)"},{nama:"Garam",qty:"1/4 sdt (1 gram)"}],
+  cara:["Rebus telur selama 8-10 menit, kupas kulitnya, belah dua.","Ulek cabai rawit, bawang putih, dan garam hingga kasar.","Beri perasan jeruk limau pada sambal.","Siramkan sambal di atas telur rebus dan sajikan."]},
+
+ {nama:"Telur Orak-Arik",kategori:"Telur",kalori:220,protein:15,
+  bahanUtama:{nama:"Telur ayam",qty:"2 butir (100 gram)",kat:"Protein"},
+  bumbu:[{nama:"Bawang bombay",qty:"1/4 buah (25 gram)"},{nama:"Tomat",qty:"1/2 buah (30 gram)"},{nama:"Lada",qty:"1/4 sdt (1 gram)"},{nama:"Minyak zaitun",qty:"1 sdt (5 ml)"}],
+  cara:["Cincang bawang bombay, potong dadu tomat.","Tumis bawang bombay hingga layu dan harum.","Masukkan tomat, masak hingga sedikit lunak.","Tuang telur yang sudah dikocok, orak-arik hingga matang sesuai selera."]},
+
+ {nama:"Tahu Bacem",kategori:"Tahu Tempe",kalori:220,protein:16,
+  bahanUtama:{nama:"Tahu",qty:"3 potong (150 gram)",kat:"Protein"},
+  bumbu:[{nama:"Kecap manis",qty:"2 sdm (30 ml)"},{nama:"Bawang merah",qty:"2 siung (10 gram)"},{nama:"Ketumbar",qty:"1/2 sdt (2 gram)"},{nama:"Gula merah",qty:"1/2 sdt (3 gram)"}],
+  cara:["Haluskan bawang merah dan ketumbar.","Ungkep tahu dengan bumbu halus, kecap manis, gula merah, dan sedikit air (sekitar 50ml) hingga air menyusut dan bumbu meresap.","Angkat tahu.","Panggang sebentar di teflon anti lengket agar kering di luar."]},
+
+ {nama:"Tahu Kecap",kategori:"Tahu Tempe",kalori:225,protein:16,
+  bahanUtama:{nama:"Tahu",qty:"3 potong (150 gram)",kat:"Protein"},
+  bumbu:[{nama:"Kecap manis",qty:"2 sdm (30 ml)"},{nama:"Bawang putih",qty:"2 siung (10 gram)"},{nama:"Cabai merah",qty:"2 buah (20 gram)"},{nama:"Minyak zaitun",qty:"1 sdt (5 ml)"}],
+  cara:["Potong tahu dadu, iris bawang putih dan cabai.","Tumis bawang putih dan cabai dengan minyak zaitun hingga harum.","Masukkan tahu, aduk rata.","Tuang kecap manis dan sedikit air (30ml), masak hingga bumbu meresap."]},
+
+ {nama:"Tempe Orek",kategori:"Tahu Tempe",kalori:230,protein:17,
+  bahanUtama:{nama:"Tempe",qty:"150 gram",kat:"Protein"},
+  bumbu:[{nama:"Kecap manis",qty:"2 sdm (30 ml)"},{nama:"Bawang merah",qty:"2 siung (10 gram)"},{nama:"Cabai merah",qty:"2 buah (20 gram)"},{nama:"Lengkuas",qty:"1 ruas (5 gram)"},{nama:"Minyak zaitun",qty:"1 sdt (5 ml)"}],
+  cara:["Potong tempe kecil-kecil (dadu), goreng setengah kering (opsional).","Iris bawang merah, cabai, dan lengkuas.","Tumis irisan bumbu hingga harum.","Masukkan tempe dan kecap manis, aduk rata hingga kering dan bumbu meresap."]},
+
+ {nama:"Tempe Mendoan Sehat",kategori:"Tahu Tempe",kalori:235,protein:16,
+  bahanUtama:{nama:"Tempe",qty:"150 gram",kat:"Protein"},
+  bumbu:[{nama:"Tepung oat",qty:"2 sdm (20 gram)"},{nama:"Bawang putih bubuk",qty:"1/2 sdt (2 gram)"},{nama:"Ketumbar bubuk",qty:"1/2 sdt (2 gram)"},{nama:"Air",qty:"3 sdm (45 ml)"},{nama:"Minyak zaitun",qty:"1 sdt (5 ml)"}],
+  cara:["Campur tepung oat, bawang putih, ketumbar, dan air hingga menjadi adonan basah.","Celupkan tempe ke dalam adonan.","Panaskan minyak zaitun di teflon.","Panggang tempe hingga keemasan di kedua sisi."]},
+
+ {nama:"Tahu-Tempe Bacem",kategori:"Tahu Tempe",kalori:225,protein:17,
+  bahanUtama:{nama:"Tahu & tempe",qty:"2 potong (100g) + 50g",kat:"Protein"},
+  bumbu:[{nama:"Kecap manis",qty:"2 sdm (30 ml)"},{nama:"Bawang merah",qty:"3 siung (15 gram)"},{nama:"Lengkuas",qty:"1 ruas (5 gram)"},{nama:"Daun salam",qty:"1 lembar"},{nama:"Gula merah",qty:"1 sdt (5 gram)"}],
+  cara:["Haluskan bawang merah dan lengkuas.","Ungkep tahu dan tempe dengan bumbu halus, kecap, gula merah, daun salam, dan air (100ml).","Masak hingga air menyusut dan bumbu meresap sempurna.","Angkat dan panggang sebentar di teflon agar aromanya keluar."]},
+
+ {nama:"Daging Sapi Lada Hitam",kategori:"Daging",kalori:245,protein:26,
+  bahanUtama:{nama:"Daging sapi",qty:"120 gram",kat:"Protein"},
+  bumbu:[{nama:"Saus lada hitam",qty:"1,5 sdm (25 ml)"},{nama:"Bawang bombay",qty:"1/4 buah (25 gram)"},{nama:"Paprika",qty:"1/4 buah (20 gram)"},{nama:"Minyak zaitun",qty:"1 sdt (5 ml)"}],
+  cara:["Potong daging sapi tipis-tipis, iris bawang bombay dan paprika.","Panaskan minyak, tumis bawang bombay hingga harum.","Masukkan daging, masak hingga berubah warna.","Tuang saus lada hitam dan masukkan paprika, masak hingga daging empuk dan bumbu meresap."]},
+
+ {nama:"Daging Sapi Semur",kategori:"Daging",kalori:250,protein:27,
+  bahanUtama:{nama:"Daging sapi",qty:"120 gram",kat:"Protein"},
+  bumbu:[{nama:"Kecap manis",qty:"2 sdm (30 ml)"},{nama:"Bawang merah",qty:"2 siung (10 gram)"},{nama:"Pala bubuk",qty:"1/4 sdt (1 gram)"},{nama:"Pekak",qty:"1 buah"},{nama:"Air",qty:"200 ml"}],
+  cara:["Rebus daging sapi hingga empuk (sekitar 30 menit jika menggunakan panci biasa).","Haluskan bawang merah. Tumis hingga harum.","Masukkan daging, kecap manis, pala, pekak, dan air rebusan daging.","Masak hingga kuah menyusut dan bumbu meresap ke dalam daging."]},
+
+ {nama:"Daging Sapi Teriyaki",kategori:"Daging",kalori:240,protein:26,
+  bahanUtama:{nama:"Daging sapi",qty:"120 gram",kat:"Protein"},
+  bumbu:[{nama:"Saus teriyaki",qty:"1,5 sdm (25 ml)"},{nama:"Bawang bombay",qty:"1/4 buah (25 gram)"},{nama:"Jahe parut",qty:"1/2 sdt (2 gram)"},{nama:"Minyak zaitun",qty:"1 sdt (5 ml)"}],
+  cara:["Potong daging sapi tipis, iris bawang bombay.","Tumis bawang bombay dan jahe hingga wangi.","Masukkan daging, masak hingga berubah warna.","Tuang saus teriyaki, masak hingga daging matang dan bumbu meresap."]},
+
+ {nama:"Daging Cincang Saus Tiram",kategori:"Daging",kalori:235,protein:25,
+  bahanUtama:{nama:"Daging sapi cincang",qty:"120 gram",kat:"Protein"},
+  bumbu:[{nama:"Saus tiram",qty:"1 sdm (15 ml)"},{nama:"Bawang putih",qty:"2 siung (10 gram)"},{nama:"Daun bawang",qty:"1 batang (10 gram)"},{nama:"Minyak zaitun",qty:"1 sdt (5 ml)"}],
+  cara:["Cincang bawang putih, iris daun bawang.","Tumis bawang putih hingga harum.","Masukkan daging cincang, masak hingga berubah warna dan airnya menyusut.","Tambahkan saus tiram dan daun bawang, aduk rata dan masak sebentar."]},
+
+ {nama:"Ayam Cincang Bumbu Bali",kategori:"Daging",kalori:245,protein:28,
+  bahanUtama:{nama:"Ayam cincang",qty:"150 gram",kat:"Protein"},
+  bumbu:[{nama:"Cabai merah",qty:"4 buah (40 gram)"},{nama:"Bawang merah",qty:"3 siung (15 gram)"},{nama:"Terasi",qty:"1/4 sdt (1 gram)"},{nama:"Minyak zaitun",qty:"1 sdt (5 ml)"}],
+  cara:["Haluskan cabai merah, bawang merah, dan terasi.","Tumis bumbu halus hingga harum dan matang.","Masukkan ayam cincang, masak hingga berubah warna.","Aduk rata dan masak hingga bumbu benar-benar meresap ke dalam ayam."]},
+
+ {nama:"Daging Sapi Rendang Sehat",kategori:"Daging",kalori:250,protein:27,
+  bahanUtama:{nama:"Daging sapi",qty:"120 gram",kat:"Protein"},
+  bumbu:[{nama:"Bumbu rendang instan",qty:"1 sdm (15 gram)"},{nama:"Santan cair (fibercreme)",qty:"50 ml"},{nama:"Serai",qty:"1 batang (10 gram)"},{nama:"Air",qty:"100 ml"}],
+  cara:["Rebus daging hingga setengah empuk.","Campur bumbu rendang instan dengan santan cair dan air.","Masukkan daging dan serai yang digeprek ke dalam campuran bumbu.","Masak dengan api kecil hingga kuah menyusut, daging empuk, dan bumbu meresap."]}
 ];
+
 const SIDES=[
- {karbo:{nama:"Nasi merah",qty:"1,5 centong",kalori:165,protein:4},sayur:{nama:"Brokoli kukus",qty:"1 centong",kalori:35,protein:2.8}},
- {karbo:{nama:"Nasi putih",qty:"1,5 centong",kalori:200,protein:4},sayur:{nama:"Buncis & wortel",qty:"1 centong",kalori:45,protein:2}},
- {karbo:{nama:"Nasi merah",qty:"1,5 centong",kalori:165,protein:4},sayur:{nama:"Bayam bening",qty:"1 centong",kalori:30,protein:2.5}},
- {karbo:{nama:"Kentang rebus",qty:"2 buah sedang",kalori:130,protein:3},sayur:{nama:"Wortel kukus",qty:"1 centong",kalori:35,protein:0.7}},
- {karbo:{nama:"Ubi jalar rebus",qty:"1 buah sedang",kalori:130,protein:1.6},sayur:{nama:"Kangkung tumis",qty:"1 centong",kalori:40,protein:2}}
+ {karbo:{nama:"Nasi merah",qty:"1,5 centong (150 gram)",kalori:165,protein:4},sayur:{nama:"Brokoli kukus",qty:"1 centong (100 gram)",kalori:35,protein:2.8}},
+ {karbo:{nama:"Nasi putih",qty:"1,5 centong (150 gram)",kalori:200,protein:4},sayur:{nama:"Buncis & wortel kukus",qty:"1 centong (100 gram)",kalori:45,protein:2}},
+ {karbo:{nama:"Nasi merah",qty:"1,5 centong (150 gram)",kalori:165,protein:4},sayur:{nama:"Bayam bening",qty:"1 centong (100 gram)",kalori:30,protein:2.5}},
+ {karbo:{nama:"Kentang rebus",qty:"2 buah sedang (150 gram)",kalori:130,protein:3},sayur:{nama:"Wortel kukus",qty:"1 centong (100 gram)",kalori:35,protein:0.7}},
+ {karbo:{nama:"Ubi jalar rebus",qty:"1 buah sedang (150 gram)",kalori:130,protein:1.6},sayur:{nama:"Kangkung tumis",qty:"1 centong (100 gram)",kalori:40,protein:2}}
 ];
+
 const RECIPES=[];let recipeId=1;
 MAINS.forEach(main=>{SIDES.forEach(side=>{
   const kalori=main.kalori+side.karbo.kalori+side.sayur.kalori+20;
@@ -532,10 +661,14 @@ MAINS.forEach(main=>{SIDES.forEach(side=>{
     bahan:[{...main.bahanUtama,kat:"Protein"},...main.bumbu.map(b=>({...b,kat:"Bumbu"})),
       {nama:side.karbo.nama,qty:side.karbo.qty,kat:"Karbo"},
       {nama:side.sayur.nama,qty:side.sayur.qty,kat:"Sayur"},
-      {nama:"Minyak zaitun",qty:"1 sdt",kat:"Bumbu"}],
-    cara:main.cara+" Sajikan bersama "+side.karbo.nama.toLowerCase()+" dan "+side.sayur.nama.toLowerCase()+"."
+      {nama:"Minyak zaitun (tambahan)",qty:"1 sdt (5 ml)",kat:"Bumbu"}],
+    cara:[
+      ...main.cara,
+      `Siapkan wadah bekal, tata ${side.karbo.nama.toLowerCase()} (${side.karbo.qty}) dan ${side.sayur.nama.toLowerCase()} (${side.sayur.qty}) di samping lauk utama.`
+    ]
   });
 });});
+
 const DAYS=["Senin","Selasa","Rabu","Kamis","Jumat","Sabtu","Minggu"];
 const MEALS=[{id:"siang",label:"Makan Siang"},{id:"malam",label:"Makan Malam"}];
 const STORAGE_KEY="dapurSehat_v1";
@@ -710,7 +843,7 @@ function renderRecipes(){
   const cats=["all","Ayam","Ikan","Seafood","Telur","Tahu Tempe","Daging"];
   const filtered=filterRecipes();
   return `
-    <div class="view-header"><h2>150 Resep ala Katering Diet</h2><p>400-550 kkal · tinggi protein · takaran centong praktis</p></div>
+    <div class="view-header"><h2>150 Resep ala Katering Diet</h2><p>400-550 kkal · tinggi protein · takaran gram presisi</p></div>
     <div class="search-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
       <input type="text" placeholder="Cari resep atau kategori..." value="${state.search}" oninput="onSearch(this.value)"></div>
     <div class="filters">${cats.map(c=>`<button class="filter-btn ${state.filter===c?'active':''}" onclick="setFilter('${c}')">${c==='all'?'Semua':c}</button>`).join("")}</div>
@@ -751,9 +884,24 @@ function showRecipe(id){
             <div class="macro-box"><div class="macro-val">${r.protein}g</div><div class="macro-lbl">Protein</div></div>
             <div class="macro-box"><div class="macro-val">${formatRupiah(getCookCost())}</div><div class="macro-lbl">Est. Biaya</div></div>
           </div></div>
-          <div class="detail-section"><div class="detail-label">Bahan (takaran centong)</div>
-            <div class="ingredient-list">${r.bahan.map(b=>`<div class="ingredient-item"><strong>${b.nama}</strong><span>${b.qty}</span></div>`).join("")}</div></div>
-          <div class="detail-section"><div class="detail-label">Cara Memasak</div><div class="steps-text">${r.cara}</div></div>
+          
+          <div class="detail-section">
+            <div class="detail-label">Bahan & Takaran Presisi</div>
+            <div class="ingredient-list">${r.bahan.map(b=>`<div class="ingredient-item"><strong>${b.nama}</strong><span>${b.qty}</span></div>`).join("")}</div>
+          </div>
+          
+          <div class="detail-section">
+            <div class="detail-label">Cara Memasak (Step-by-Step)</div>
+            <div class="steps-list">
+              ${r.cara.map((step, idx) => `
+                <div class="step-item">
+                  <div class="step-num">${idx + 1}</div>
+                  <div class="step-text">${step}</div>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+          
           <button class="btn btn-primary btn-block mt-3" onclick="addToPlanPrompt(${r.id})">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Tambah ke Rencana Mingguan</button>
         </div>
